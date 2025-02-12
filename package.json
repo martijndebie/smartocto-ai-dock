@@ -1,0 +1,15 @@
+{
+  "name": "inject-script-extension",
+  "version": "1.0.0",
+  "description": "A Chrome extension that injects JavaScript into the current website and provides an options page.",
+  "main": "background.js",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-plugin-chrome": "^0.4.0"
+  }
+}
