@@ -1,27 +1,100 @@
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Options</title>
-    <style>
-      body {
-        width: 300px;
-        padding: 10px;
-      }
-      label {
-        display: block;
-        margin-top: 10px;
-      }
-      input {
-        width: 100%;
-        padding: 5px;
-      }
-    </style>
-  </head>
-  <body>
-    <h3>Options</h3>
-    <label for="optionInput">Option:</label>
+
+<head>
+  <title>Smartocto.ai Assistent Settings</title>
+  <style>
+    body {
+      background-color: #A72242;
+      margin: 0px;
+    }
+
+    h1,
+    h2,
+    h3,
+    span.label {
+      color: white
+    }
+
+    button {
+      background-color: #fff;
+      color: #760E2E;
+      border: none;
+      border-radius: 25px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    button:hover {
+      background-color: #760E2E;
+      color: #fff;
+    }
+
+    input {
+      background-color: #fff;
+      color: #760E2E;
+      border: none;
+      border-radius: 5px;
+    }
+
+    div#container {
+      margin-left: 5px;
+    }
+
+    div#smartocto-ai-container, #smartocto-ai-save-state,#smartocto-ai-button-container {
+      padding: 5px;
+    }
+    p {color:white;}
+  </style>
+</head>
+
+<body>
+  <div style="height:45px;background-color:white">
+    <div id="logo" style="width: 20px;float: left;margin-top: 10px;margin-left: 10px;"><svg width="47" height="28"
+        viewBox="0 0 47 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xml:space="preserve" xmlns:serif="http://www.serif.com/"
+        style="fill-rule:evenodd;clip-rule:evenodd;stroke-miterlimit:10">
+        <path
+          d="M12.551,2.44c-6.338,-0 -11.482,5.131 -11.496,11.472c-0.013,6.349 5.123,11.506 11.472,11.52l20.983,0.045l0.024,0c6.338,0 11.483,-5.131 11.496,-11.471c0.013,-6.349 -5.123,-11.507 -11.472,-11.52l-20.983,-0.046c-0.008,-0 -0.016,-0 -0.024,-0"
+          style="fill:#fefdff;fill-rule:nonzero"></path>
+        <path
+          d="M24.318,14.029c0,6.355 -5.151,11.506 -11.506,11.506c-6.354,-0 -11.506,-5.151 -11.506,-11.506c0,-6.354 5.152,-11.506 11.506,-11.506c6.355,0 11.506,5.152 11.506,11.506"
+          style="fill:#e52553;fill-rule:nonzero"></path>
+        <path
+          d="M31.222,17.584l0,-6.177l-2.253,-0l0,-2.465l2.253,-0l0,-3.977l2.465,0l0,3.977l3.182,-0l-0,2.465l-3.182,-0l0,5.832c0,1.776 0.372,2.624 1.962,2.624l1.272,0l0,2.466l-1.882,-0c-2.703,-0 -3.817,-1.512 -3.817,-4.745"
+          style="fill:#fff;fill-rule:nonzero"></path>
+        <path
+          d="M12.551,2.44c-6.338,-0 -11.482,5.131 -11.496,11.472c-0.013,6.349 5.123,11.506 11.472,11.52l20.983,0.045l0.024,0c6.338,0 11.483,-5.131 11.496,-11.471c0.013,-6.349 -5.123,-11.507 -11.472,-11.52l-20.983,-0.046c-0.008,-0 -0.016,-0 -0.024,-0Z"
+          style="fill:none;fill-rule:nonzero;stroke:#e52553;stroke-width:.8px"></path>
+        <path
+          d="M9.709,18.662c0.929,-0 1.687,-0.317 2.274,-0.949c0.587,-0.632 0.881,-1.445 0.881,-2.439c0,-0.981 -0.294,-1.787 -0.881,-2.42c-0.587,-0.632 -1.345,-0.948 -2.274,-0.948c-0.929,-0 -1.684,0.316 -2.265,0.948c-0.581,0.633 -0.871,1.439 -0.871,2.42c-0,0.994 0.29,1.807 0.871,2.439c0.581,0.632 1.336,0.949 2.265,0.949m3.155,-6.776l0,-1.49l1.8,-0l0,9.775l-1.8,0l0,-1.49c-0.103,0.193 -0.248,0.397 -0.435,0.61c-0.188,0.213 -0.417,0.403 -0.688,0.571c-0.271,0.168 -0.59,0.309 -0.958,0.426c-0.368,0.116 -0.791,0.174 -1.268,0.174c-0.658,-0 -1.277,-0.133 -1.858,-0.397c-0.581,-0.264 -1.084,-0.629 -1.51,-1.094c-0.426,-0.464 -0.762,-1.013 -1.007,-1.645c-0.245,-0.632 -0.367,-1.316 -0.367,-2.052c-0,-0.723 0.122,-1.4 0.367,-2.033c0.245,-0.632 0.581,-1.18 1.007,-1.645c0.426,-0.465 0.929,-0.829 1.51,-1.094c0.581,-0.264 1.2,-0.397 1.858,-0.397c0.477,0 0.9,0.058 1.268,0.175c0.368,0.116 0.687,0.261 0.958,0.435c0.271,0.174 0.5,0.365 0.688,0.571c0.187,0.207 0.332,0.407 0.435,0.6"
+          style="fill:#fff;fill-rule:nonzero"></path>
+        <path
+          d="M16.89,10.396l1.801,-0l-0,9.775l-1.801,0l0,-9.775Zm-0.329,-2.691c0,-0.348 0.119,-0.639 0.358,-0.871c0.239,-0.232 0.526,-0.348 0.862,-0.348c0.335,-0 0.622,0.116 0.861,0.348c0.239,0.232 0.358,0.523 0.358,0.871c0,0.349 -0.119,0.639 -0.358,0.871c-0.239,0.232 -0.526,0.349 -0.861,0.349c-0.336,-0 -0.623,-0.117 -0.862,-0.349c-0.239,-0.232 -0.358,-0.522 -0.358,-0.871"
+          style="fill:#fff;fill-rule:nonzero"></path>
+      </svg>
+    </div>
+    <div id="close-smartocto-ai-suggestions"
+      style="display:none; position:relative;right: 0px;top: 12px;/* color: brown; *//* right: 0; */width: 16px;float: right;font-size: 30px;height: 16px;color: #a1a1a1 !important; margin-right: 20px;font-family: verdana,arial;">
+      <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M13.524 1L8 6.524 2.476 1 1 2.476 6.523 8 1 13.524 2.476 15l5.523-5.524L13.524 15 15 13.524 9.476 8 15 2.476z"
+          fill-rule="evenodd"></path>
+      </svg>
+    </div>
+  </div>
+  <div id="smartocto-ai-container">
+    <h3>Save settings for smartocto.ai</h3>
+    <input type="password" id="smartocto-ai-apiToken" placeholder="Insert API Token"><br /><br />
+    <input type="text" id="smartocto-ai-brandId" placeholder="Insert Brand ID"><br /><br />
+    <input type="text" id="smartocto-ai-clientId" placeholder="Insert Client ID"><br /><br />
+  </div>
+  <div id="smartocto-ai-button-container"><button id="smartocto-ai-save">Save settings</button></div>
+  <div id="smartocto-ai-save-state"></div>
+  <label for="optionInput">Option:</label>
     <input type="text" id="optionInput" />
     <button id="saveButton">Save</button>
-    <script src="options.js"></script>
+  <script src="options.js"></script>
   </body>
 </html>
