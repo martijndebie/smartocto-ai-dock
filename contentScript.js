@@ -208,6 +208,11 @@ chrome.storage.sync.get('option', (data) => {
           sendToAPI('paragraphs');
         });
 
+        document.getElementById('ai-analyse-userneeds').addEventListener('click', function (e) {
+          console.log('click on button: ai-analyse-userneeds');
+          sendToAPI('userneeds');
+        });
+
         document.getElementById('ai-clear-input-body').addEventListener('click', function (e) {
           document.getElementById('ai-selected-bodytext').value="";
         });
