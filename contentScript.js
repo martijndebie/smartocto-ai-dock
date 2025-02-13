@@ -2,8 +2,15 @@
 
 chrome.storage.sync.get('option', (data) => {
   if (data.option) {
-    localStorage.setItem('injectedOption', data.option);
-    console.log('Injected option:', data.option);
+
+    // localStorage.setItem('injectedOption', data.option);
+    // console.log('Injected option:', data.option);
+
+    // localStorage.setItem('injectedOption', data.option);
+    // console.log('Injected option:', data.option);
+
+    // localStorage.setItem('injectedOption', data.option);
+    // console.log('Injected option:', data.option);
 
     let styleSheetData = "div#smartocto-ai-form h1 {padding: 0px 10px 0 10px; margin-top: 0px;} div#smartocto-ai-headlines h1 {padding: 24px 10px 0 10px; margin: 0;} p#smartocto-ai-instruction {margin:0; padding:0;} div#smartocto-ai-form { padding: 13px 10px 0 10px;} div#smartocto-ai-form button { width: 70%; } div#smartocto-ai-form * {width:100%; } div#smartocto-ai-form textarea {height: 200px; overflow: auto; } div#smartocto-ai-status { padding: 13px 10px 0 10px;} *[data-smartocto-ai-hover='active'] {background-color: #e42b58e3 !important; } ul.ai__suggestions-list { align-items: center; list-style: none; cursor: default; margin:0 !important; padding: 0 !important; } #smartocto-ai-timestamp {padding: 5px; color: #ffe3e3; font-size: 7pt !important;} #smartocto-ai-headlines p {font-size: 14pt !important; padding:5px;} #smartocto-ai-results { overflow: auto;height:100%; position: fixed; top:0px; right:0; z-index: 999999999; width:310px; background-color:#760E2E; padding:0px 0px; border-radius:0px; color:white !important; z-index: 99999999;} #smartocto-ai-results h1 { color: white; } ul.ai__suggestions-list li { font-size: 12pt !important; align-items: center; border-bottom: 1px solid #E63656; display: flex; flex-direction: row; justify-content: space-between;padding: 15px;list-style: none;} #smartocto-ai-optionbox { height: 45px;background-color: #A72242;flex-direction: row;padding: 13px 10px 0 10px;align-items: flex-start;border-bottom: 2px solid #760E2E;} #smartocto-ai-optionbox h3 { color: #fff;font: normal 15px / 18px 'Verdana' !important;margin-top: 6px;width: 90px;float: left; } #smartocto-ai-header-bar { height:45px;background-color:white } #smartocto-ai-header-bar #smartocto-ai-logo {width: 20px;float: left;margin-top: 10px;margin-left: 10px; } .smartocto-ai-selected-option { background-color: #fff;font: normal 15px / 18px Verdana !important;padding: 5px 10px;border-radius: 25px;color: #760E2E;text-align: center;cursor: default;text-transform: lowercase;max-width: 150px;float: left; margin-left: 10px; width: 100%;} hr {margin-top:2px; margin-bottom:2px;}";
     if (document.getElementById('smartocto-ai-style') == null) {
@@ -40,7 +47,7 @@ chrome.storage.sync.get('option', (data) => {
       }
     }
 
-    function updateDisplayedOption(selectedActionType){
+    function updateDisplayedOption(selectedActionType) {
       document.getElementsByClassName('smartocto-ai-selected-option')[0].innerText = selectedActionType;
     }
 
@@ -75,7 +82,7 @@ chrome.storage.sync.get('option', (data) => {
       let textareaText = document.getElementById("ai-selected-bodytext").value;
       if (textareaText == "") { alert("The headline or bodytext is not selected. Try again"); return; }
 
-      if (inputText == "") {  inputText = " "; }
+      if (inputText == "") { inputText = " "; }
 
       if (selectedActionType == 'headlines') {
         document.getElementById('smartocto-ai-headlines').innerHTML = "";
@@ -214,14 +221,12 @@ chrome.storage.sync.get('option', (data) => {
         });
 
         document.getElementById('ai-clear-input-body').addEventListener('click', function (e) {
-          document.getElementById('ai-selected-bodytext').value="";
+          document.getElementById('ai-selected-bodytext').value = "";
         });
 
         document.getElementById('ai-clear-input-headline').addEventListener('click', function (e) {
-          document.getElementById('ai-selected-headline').value="";
+          document.getElementById('ai-selected-headline').value = "";
         });
-
-        //updateInstruction("Select the headline of the story");
       }
     }
 
