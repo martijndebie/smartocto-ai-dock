@@ -26,33 +26,6 @@ chrome.storage.sync.get(['option', 'apiToken', 'clientId', 'brandId'], (data) =>
       smartoctoAiStyle.innerHTML = styleSheetData;
     }
 
-    function updateInstruction(instruction) {
-      if (instruction == "hide") {
-        document.getElementById("smartocto-ai-instruction").style.display = "none";
-      }
-      else {
-        document.getElementById("smartocto-ai-instruction").textContent = instruction;
-      }
-    }
-
-    // Functie om de resultaten weer te geven in een lijst
-    function displayResults(data) {
-      const resultsList = document.getElementById("results");
-      resultsList.innerHTML = ""; // Leeg de lijst eerst
-
-      if (Array.isArray(data)) {
-        data.forEach(item => {
-          const listItem = document.createElement("li");
-          listItem.textContent = JSON.stringify(item); // Of toon specifieke data
-          resultsList.appendChild(listItem);
-        });
-      } else {
-        const listItem = document.createElement("li");
-        listItem.textContent = "Geen resultaten gevonden.";
-        resultsList.appendChild(listItem);
-      }
-    }
-
     function updateDisplayedOption(selectedActionType) {
       document.getElementsByClassName('smartocto-ai-selected-option')[0].innerText = selectedActionType;
     }
