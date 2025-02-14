@@ -18,7 +18,7 @@ chrome.storage.sync.get(['option', 'apiToken', 'clientId', 'brandId'], (data) =>
     localStorage.setItem('injectedOption', data.option);
     console.log('Injected option:', data.option);
 
-    let styleSheetData = "div#smartocto-ai-form h1 {padding: 0px 10px 0 10px; margin-top: 0px;} div#smartocto-ai-output h1 {padding: 24px 10px 0 10px; margin: 0;} p#smartocto-ai-instruction {margin:0; padding:0;} div#smartocto-ai-form { padding: 13px 10px 0 10px;} div#smartocto-ai-form button { width: 70%; } div#smartocto-ai-form * {width:100%; } div#smartocto-ai-form textarea {height: 200px; overflow: auto; } div#smartocto-ai-status { padding: 13px 10px 0 10px;} *[data-smartocto-ai-hover='active'] {background-color: #e42b58e3 !important; } ul.ai__suggestions-list { align-items: center; list-style: none; cursor: default; margin:0 !important; padding: 0 !important; } #smartocto-ai-timestamp {padding: 5px; color: #ffe3e3; font-size: 7pt !important;} #smartocto-ai-output p {font-size: 14pt !important; padding:5px;} #smartocto-ai-results { overflow: auto;height:100%; position: fixed; top:0px; right:0; z-index: 999999999; width:310px; background-color:#760E2E; padding:0px 0px; border-radius:0px; color:white !important; z-index: 99999999;} #smartocto-ai-results h1 { color: white; } ul.ai__suggestions-list li { font-size: 12pt !important; align-items: center; border-bottom: 1px solid #E63656; display: flex; flex-direction: row; justify-content: space-between;padding: 15px;list-style: none;} #smartocto-ai-optionbox { height: 45px;background-color: #A72242;flex-direction: row;padding: 13px 10px 0 10px;align-items: flex-start;border-bottom: 2px solid #760E2E;} #smartocto-ai-optionbox h3 { color: #fff;font: normal 15px / 18px 'Verdana' !important;margin-top: 6px;width: 90px;float: left; } #smartocto-ai-header-bar { height:45px;background-color:white } #smartocto-ai-header-bar #smartocto-ai-logo {width: 20px;float: left;margin-top: 10px;margin-left: 10px; } .smartocto-ai-selected-option { background-color: #fff;font: normal 15px / 18px Verdana !important;padding: 5px 10px;border-radius: 25px;color: #760E2E;text-align: center;cursor: default;text-transform: lowercase;max-width: 150px;float: left; margin-left: 10px; width: 100%;} hr {margin-top:2px; margin-bottom:2px;}";
+    let styleSheetData = "div#smartocto-ai-form h1 {padding: 0px 10px 0 10px; margin-top: 0px;} div#smartocto-ai-output h1 {padding: 24px 10px 0 10px; margin: 0;} p#smartocto-ai-instruction {margin:0; padding:0;} div#smartocto-ai-form { padding: 13px 10px 0 10px;} div#smartocto-ai-form button { width: 70%; } div#smartocto-ai-form * {width:100%; } div#smartocto-ai-form textarea {height: 200px; overflow: auto; } div#smartocto-ai-status { padding: 13px 10px 0 10px;} *[data-smartocto-ai-hover='active'] {background-color: #e42b58e3 !important; } ul.ai__suggestions-list { align-items: center; list-style: none; cursor: default; margin:0 !important; padding: 0 !important; } #smartocto-ai-timestamp {padding: 5px; color: #ffe3e3; font-size: 7pt !important;} #smartocto-ai-output p {font-size: 14pt !important; padding:5px;} #smartocto-ai-results { overflow: auto;height:100%; position: fixed; top:0px; right:0; z-index: 999999999; width:310px; background-color:#760E2E; padding:0px 0px; border-radius:0px; color:white !important; z-index: 99999999;} #smartocto-ai-results h1 { color: white; } ul.ai__suggestions-list li { font-size: 12pt !important; align-items: center; border-bottom: 1px solid #E63656; display: flex; flex-direction: row; justify-content: space-between;padding: 15px;list-style: none;} #smartocto-ai-optionbox { height: 45px;background-color: #A72242;flex-direction: row;padding: 13px 10px 0 10px;align-items: flex-start;border-bottom: 2px solid #760E2E;} #smartocto-ai-optionbox h3 { color: #fff;font: normal 15px / 18px 'Verdana' !important;margin-top: 6px;width: 90px;float: left; } #smartocto-ai-header-bar { height:45px;background-color:white } #smartocto-ai-header-bar #smartocto-ai-logo {width: 20px;float: left;margin-top: 10px;margin-left: 10px; } .smartocto-ai-selected-option { background-color: #fff;font: normal 15px / 18px Verdana !important;padding: 5px 10px;border-radius: 25px;color: #760E2E;text-align: center;cursor: default;text-transform: lowercase;max-width: 170px;float: left; margin-left: 10px; width: 100%;} hr {margin-top:2px; margin-bottom:2px;}";
     if (document.getElementById('smartocto-ai-style') == null) {
       var smartoctoAiStyle = document.createElement('style');
       smartoctoAiStyle.id = "smartocto-ai-style";
@@ -101,13 +101,14 @@ chrome.storage.sync.get(['option', 'apiToken', 'clientId', 'brandId'], (data) =>
       myHeaders.append("accept", "application/json");
       myHeaders.append("Content-Type", "application/json");
       const nowForApi = Date.now();
+      let apiUrl;
 
       var result = [];
       result.brandId = 'denboschnieuws';
       result.clientId = 'dbn';
       result.apiToken = 'rwjbv0rozt2k0s8ivh1ca';
 
-      let payload ={
+      let payload = {
         "request_id": nowForApi.toString(),
         "client": result.clientId,
         "type": "pageviews"
@@ -126,14 +127,14 @@ chrome.storage.sync.get(['option', 'apiToken', 'clientId', 'brandId'], (data) =>
             redirect: "follow"
           };
 
+          updateDisplayedOption('content');
+
           document.getElementById('smartocto-ai-status').innerHTML = "<p>One moment please, smartocto.ai generates headlines...</p>";
           document.getElementById('smartocto-ai-status').style.display = "block";
 
           document.getElementById('smartocto-ai-results').style.display = "block";
-          updateDisplayedOption('content');
 
-          var apiUrl = "https://api.smartocto.com/api/integrations/v2/" + result.brandId + "/ai/headliner?api_key=" + result.apiToken;
-
+          apiUrl = "https://api.smartocto.com/api/integrations/v2/" + result.brandId + "/ai/headliner?api_key=" + result.apiToken;
 
           const response = await fetch(apiUrl, requestOptions)
             .then(response => response.json())
@@ -170,6 +171,64 @@ chrome.storage.sync.get(['option', 'apiToken', 'clientId', 'brandId'], (data) =>
       }
 
       if (selectedActionType == 'userneeds') {
+        try {
+          payload = {
+            "text": textareaText
+          }
+          const raw = JSON.stringify(payload);
+
+          const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+          };
+
+          updateDisplayedOption('user needs analysis');
+
+          document.getElementById('smartocto-ai-status').innerHTML = "<p>One moment please, smartocto.ai is analysing...</p>";
+          document.getElementById('smartocto-ai-status').style.display = "block";
+
+          document.getElementById('smartocto-ai-results').style.display = "block";
+
+          apiUrl = apiUrl = "https://userneeds.production.smartocto.com/process_json";
+
+          const response = await fetch(apiUrl, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+              /* console.log(data); */
+
+              let headlineContent = '<h1>Suggestions</h1><ul class="ai__suggestions-list">';
+              let userNeedFound = '';
+
+
+              headlineContent += `<li>Fact: ${data['Fact-driven']}</li>`;
+              headlineContent += `<li>Context: ${data['Context-driven']}</li>`;
+              headlineContent += `<li>Action: ${data['Action-driven']}</li>`;
+              headlineContent += `<li>Emotion: ${data['Emotion-driven']}</li>`;
+              headlineContent += `<li>Analysis:<br/>${data['Explanation']}</li>`;
+              if (data['Info']) {
+                headlineContent += `<li>Info:<br/>${data['Info']}</li>`;
+              }
+              //}
+              headlineContent += `</ul>`;
+
+              let timestampGenerated = new Date();
+              document.getElementById('smartocto-ai-status').innerHTML = "";
+              document.getElementById('smartocto-ai-status').style.display = "none";
+              document.getElementById('smartocto-ai-output').innerHTML = headlineContent;
+              document.getElementById('smartocto-ai-output').style.display = "block";
+
+              document.getElementById('smartocto-ai-timestamp').innerHTML = "Generated: " + timestampGenerated;
+
+              return;
+            });
+
+          // const data = await response.json();
+          // displayResults(data);
+        } catch (error) {
+          console.error('Error:', error);
+        }
       }
     }
 
@@ -191,7 +250,7 @@ chrome.storage.sync.get(['option', 'apiToken', 'clientId', 'brandId'], (data) =>
       <button id="ai-input-body">Copy selected bodytext</button> <button id="ai-clear-input-body">Clear</button><br><br />
       <button id="ai-generate-headlines">Generate headlines</button><br/>
       <button id="ai-generate-paragraphs">Generate paragraphs</button><br/>
-      <button id="ai-generate-userneeds">Analyse User Needs</button></div><div id="smartocto-ai-status" style="display:none"></div>
+      <button id="ai-analyse-userneeds">Analyse User Needs</button></div><div id="smartocto-ai-status" style="display:none"></div>
       `;
 
         //Create div with headlines
